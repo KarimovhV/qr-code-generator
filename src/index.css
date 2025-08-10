@@ -1,0 +1,733 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === Tema Değişkenleri === */
+:root {
+  /* Default: Dark Theme */
+  --bg: #121212;
+  --bg-secondary: #1e1e1e;
+  --text: #ffffff;
+  --text-secondary: #b0b0b0;
+  --card-bg: #2d2d2d;
+  --border: #333;
+  --btn-primary-bg: linear-gradient(135deg, #bb86fc 0%, #64b5f6 100%);
+  --btn-primary-hover: linear-gradient(135deg, #9b6bd4 0%, #53a3e5 100%);
+  --btn-secondary: #333;
+  --btn-secondary-hover: #444;
+  --input-border: #555;
+  --input-focus-shadow: 0 0 0 3px rgba(187, 134, 252, 0.2);
+  --tab-active-bg: #2a2a2a;
+  --tab-active-border: #bb86fc;
+  --tab-text: #b0b0b0;
+  --tab-text-active: #bb86fc;
+  --qr-placeholder: #555;
+  --qr-help: #888;
+  --qr-data-bg: #1e1e1e;
+  --footer-text: #777;
+  --gradient-bg: linear-gradient(135deg, #1e1e2e 0%, #1a1a2a 50%, #1c1c2c 100%);
+}
+
+body.light {
+  /* Açık tema değişkenleri */
+  --bg: #f3f4f6;
+  --bg-secondary: #f9fafb;
+  --text: #111827;
+  --text-secondary: #4b5563;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+  --btn-primary-bg: linear-gradient(135deg, #9333ea 0%, #2563eb 100%);
+  --btn-primary-hover: linear-gradient(135deg, #7e22ce 0%, #1d4ed8 100%);
+  --btn-secondary: #f9fafb;
+  --btn-secondary-hover: #e5e7eb;
+  --input-border: #d1d5da;
+  --input-focus-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+  --tab-active-bg: #faf5ff;
+  --tab-active-border: #9333ea;
+  --tab-text: #6b7280;
+  --tab-text-active: #9333ea;
+  --qr-placeholder: #e5e7eb;
+  --qr-help: #6b7280;
+  --qr-data-bg: #f9fafb;
+  --footer-text: #6b7280;
+  --gradient-bg: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+/* === Genel Sayfa Stili === */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: var(--gradient-bg);
+  min-height: 100vh;
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.app-container {
+  min-height: 100vh;
+  padding: 16px;
+}
+
+.max-w-container {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+/* === Header === */
+.header-container {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: var(--btn-primary-bg);
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.header-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  background: var(--btn-primary-bg);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+}
+
+.header-description {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+}
+
+/* === Main Card === */
+.main-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* === Tab Navigation === */
+.tab-container {
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-nav {
+  display: flex;
+}
+
+.tab-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--tab-text);
+}
+
+.tab-button.active {
+  color: var(--tab-text-active);
+  border-bottom: 2px solid var(--tab-active-border);
+  background-color: var(--tab-active-bg);
+}
+
+.tab-button:not(.active):hover {
+  color: var(--text);
+  background-color: var(--bg-secondary);
+}
+
+/* === Content Area === */
+.content-container {
+  padding: 32px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* === Form Styles === */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.2s;
+  background: var(--bg-secondary);
+  color: var(--text);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #bb86fc;
+  box-shadow: var(--input-focus-shadow);
+}
+
+.textarea-field {
+  min-height: 100px;
+  resize: none;
+}
+
+.input-help {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* === Buttons === */
+.btn {
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background: var(--btn-primary-hover);
+}
+
+.btn-secondary {
+  background: var(--btn-secondary);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: var(--btn-secondary-hover);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-flex {
+  flex: 1;
+}
+
+.btn-group {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  max-width: 384px;
+}
+
+/* === QR Section === */
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.qr-container {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 384px;
+}
+
+.qr-placeholder {
+  text-align: center;
+  padding: 64px 0;
+}
+
+.qr-placeholder-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--qr-placeholder);
+  margin: 0 auto 16px;
+}
+
+.qr-placeholder-text {
+  color: var(--text-secondary);
+}
+
+.qr-display {
+  text-align: center;
+}
+
+.qr-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  padding: 16px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.qr-help-text {
+  font-size: 0.875rem;
+  color: var(--qr-help);
+  margin-top: 16px;
+}
+
+/* === QR Data === */
+.qr-data-section {
+  width: 100%;
+  max-width: 384px;
+}
+
+.qr-data-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.qr-data-content {
+  background: var(--qr-data-bg);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  max-height: 128px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-words;
+  font-family: monospace;
+}
+
+/* === Footer === */
+.footer {
+  text-align: center;
+  margin-top: 32px;
+  color: var(--footer-text);
+  font-size: 0.875rem;
+}
+
+/* === Success Icon === */
+.success-icon {
+  color: #22c55e;
+}
+
+/* === Yeni Tema Değiştirme Butonu === */
+.theme-toggle {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 70px;
+  height: 35px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-slider {
+  width: 25px;
+  height: 25px;
+  background: var(--btn-primary-bg);
+  border-radius: 50%;
+  position: absolute;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  left: 4px;
+}
+
+/* Açık temada slider sağda */
+body.light .theme-toggle .toggle-slider {
+  transform: translateX(31px);
+}
+
+/* Karanlık temada slider solda */
+body.dark .theme-toggle .toggle-slider {
+  transform: translateX(0);
+}
+
+.contact-message {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contact-message:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-message a {
+  color: #bb86fc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+body.light .contact-message a {
+  color: #9333ea;
+}
+
+.contact-message a:hover {
+  text-decoration: underline;
+}
+
+.related-products-main {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px; /* Üst-alt padding azaltıldı */
+  margin-bottom: 32px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.related-products-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.related-products {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.related-products-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+  margin-top: 0; /* Üstteki margin'i kaldır */
+  text-align: center;
+  background: var(--btn-primary-bg);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.product-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #bb86fc;
+}
+
+body.light .product-card:hover {
+  border-color: #9333ea;
+}
+
+.product-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.product-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--btn-primary-bg);
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-link:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-link::before {
+  content: "📄→🖼️";
+  font-size: 1.1em;
+}
+
+/* index.css dosyanıza bu responsive düzeltmeleri ekleyin */
+
+/* === Mobil Responsive Düzeltmeler === */
+@media (max-width: 768px) {
+  /* App container padding azaltma */
+  .app-container {
+    padding: 8px;
+  }
+
+  /* Header responsive */
+  .header-container {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .header-title {
+    font-size: 1.875rem; /* 2.25rem'den küçültüldü */
+  }
+
+  .header-description {
+    font-size: 1rem; /* 1.125rem'den küçültüldü */
+    padding: 0 16px;
+  }
+
+  /* Sağ üst butonlar mobilde daha iyi yerleşim */
+  .header-controls {
+    position: absolute !important;
+    top: -10px !important;
+    right: 0px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    align-items: flex-end !important;
+  }
+
+  .header-controls .btn {
+    padding: 6px 12px !important;
+    font-size: 0.75rem !important;
+    min-width: auto !important;
+  }
+
+  .theme-toggle {
+    width: 60px !important;
+    height: 30px !important;
+  }
+
+  .toggle-slider {
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 10px !important;
+  }
+
+  body.light .theme-toggle .toggle-slider {
+    transform: translateX(26px) !important;
+  }
+
+  /* Tab butonları */
+  .tab-button {
+    padding: 12px 8px;
+    font-size: 0.8125rem;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* Content padding */
+  .content-container {
+    padding: 24px 16px;
+  }
+
+  /* Form row grid */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Input field font size (iOS zoom önleme) */
+  .input-field {
+    font-size: 16px !important; /* iOS'ta zoom'u önler */
+    padding: 12px 14px;
+  }
+
+  /* Button group */
+  .btn-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn-flex {
+    width: 100%;
+  }
+
+  /* QR container */
+  .qr-container {
+    padding: 24px 16px;
+  }
+
+  .qr-image {
+    max-width: 280px; /* 300px'den küçültüldü */
+    padding: 12px;
+  }
+
+  /* QR placeholder */
+  .qr-placeholder {
+    padding: 48px 0; /* 64px'den küçültüldü */
+  }
+
+  .qr-placeholder-icon {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  /* Section title */
+  .section-title {
+    font-size: 1.25rem; /* 1.5rem'den küçültüldü */
+  }
+
+  /* Contact message ve related products */
+  .contact-message {
+    padding: 12px 16px;
+    font-size: 0.875rem;
+    margin-top: 12px;
+  }
+  
+  .related-products {
+    padding: 20px 16px;
+    margin-top: 20px;
+  }
+  
+  .product-card {
+    padding: 16px;
+  }
+  
+  .product-description {
+    font-size: 0.875rem;
+  }
+  
+  .product-link {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+/* === Çok küçük ekranlar için === */
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 1.5rem;
+  }
+
+  .header-description {
+    font-size: 0.9375rem;
+  }
+
+  .content-container {
+    padding: 20px 12px;
+  }
+
+  .main-card {
+    border-radius: 16px;
+  }
+
+  .tab-button {
+    padding: 10px 4px;
+    font-size: 0.75rem;
+  }
+
+  .qr-image {
+    max-width: 250px;
+  }
+
+  .header-controls .btn {
+    padding: 4px 8px !important;
+    font-size: 0.7rem !important;
+  }
+}
+
+/* === Landscape tablet için === */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
