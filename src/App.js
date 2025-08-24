@@ -289,7 +289,7 @@ TEL:${contact.phone}
 EMAIL:${contact.email}
 URL:${contact.url}
 END:VCARD`;
-    return vcard;
+    return unescape(encodeURIComponent(vcard));
   };
 
   useEffect(() => {
