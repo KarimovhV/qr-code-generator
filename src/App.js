@@ -160,6 +160,8 @@ const QRCodeGenerator = () => {
     }
   };
 
+  const encodeUTF8 = (text) => unescape(encodeURIComponent(text));
+
   const createQR = (text, tabType) => {
     if (!qrContainerRef.current) return;
 
@@ -171,7 +173,7 @@ const QRCodeGenerator = () => {
       const paddingValue = (tabType === 'contact') ? 0 : 11;
       new window.QRious({
         element: canvas,
-        value: text,
+        value: encodeUTF8(text),
         size: 400,
         background: 'white',
         foreground: 'black',
@@ -221,7 +223,7 @@ const QRCodeGenerator = () => {
 
       new window.QRious({
         element: canvas,
-        value: text,
+        value: encodeUTF8(text),
         size: 400,
         background: 'white',
         foreground: 'black',
@@ -289,7 +291,7 @@ TEL:${contact.phone}
 EMAIL:${contact.email}
 URL:${contact.url}
 END:VCARD`;
-    return unescape(encodeURIComponent(vcard));
+    return vcard;
   };
 
   useEffect(() => {
